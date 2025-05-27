@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="app">
+        <div class="sidebar">
+            <div class="header">
+                <div class="profile-section">
+                    <div class="user-avatar" id="current-user-avatar"></div>
+                    <div class="user-name" id="current-user-name"></div>
+                    <button id="logout-btn" class="logout-btn">Logout</button>
+                </div>
+                <div class="add-friend">
+                    <input type="text" id="friend-username" placeholder="Enter username">
+                    <button id="add-friend-btn">Add Friend</button>
+                </div>
+            </div>
+            <div class="friend-requests" id="friend-requests">
+                <!-- Friend requests will appear here -->
+            </div>
+            <div class="contacts-list" id="contacts-list">
+              
+            </div>
+        </div>
+        <div class="chat-window">
+            <div class="chat-header">
+                <div class="contact-info">
+                    <div class="contact-avatar" id="chat-contact-avatar"></div>
+                    <div class="contact-name" id="chat-contact-name">Select a contact</div>
+                </div>
+            </div>
+            <div class="messages" id="messages">
+                <!-- Messages will be populated here -->
+            </div>
+            <div class="message-input">
+                <input type="text" id="message-input" placeholder="Type a message">
+                <button id="send-btn" class="send-btn">Send</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

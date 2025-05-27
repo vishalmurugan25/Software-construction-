@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SMS Messenger</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #e5ddd5;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #111b21;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #111b21;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e9edef;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #00a884;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-bottom: 15px;
+        }
+
+        button:hover {
+            background-color: #008f72;
+        }
+
+        .signup-link {
+            text-align: center;
+        }
+
+        .signup-link a {
+            color: #00a884;
+            text-decoration: none;
+        }
+
+        .signup-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="bg-canvas"></canvas>
+    <div class="auth-bg">
+      <div class="auth-card fade-in" id="login-card">
+        <h1 class="auth-title">Welcome Back</h1>
+        <form id="login-form" autocomplete="off">
+          <div class="auth-group">
+            <input type="text" id="username" required class="auth-input" autocomplete="off" />
+            <label for="username" class="auth-label">Username</label>
+            <span class="auth-bar"></span>
+          </div>
+          <div class="auth-group">
+            <input type="password" id="password" required class="auth-input" autocomplete="off" />
+            <label for="password" class="auth-label">Password</label>
+            <span class="auth-bar"></span>
+          </div>
+          <button type="submit" class="auth-btn">Login</button>
+          <div class="auth-switch">Don't have an account? <a href="signup.html" id="to-signup">Sign up</a></div>
+        </form>
+      </div>
+    </div>
+    <script src="live-bg.js"></script>
+    <script>
+    // Floating label animation
+    document.querySelectorAll('.auth-input').forEach(input => {
+      input.addEventListener('focus', function() {
+        this.parentNode.classList.add('focused');
+      });
+      input.addEventListener('blur', function() {
+        if (!this.value) this.parentNode.classList.remove('focused');
+      });
+      if (input.value) input.parentNode.classList.add('focused');
+    });
+
+    // Form submit
+    document.getElementById('login-form').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const username = document.getElementById('username').value;
+      const password = document.getElementById('password').value;
+      try {
+        const response = await fetch('http://localhost:3000/api/login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ username, password })
+        });
+        const data = await response.json();
+        if (response.ok) {
+          localStorage.setItem('currentUser', JSON.stringify(data));
+          // Fade out then redirect
+          document.getElementById('login-card').classList.remove('fade-in');
+          document.getElementById('login-card').classList.add('fade-out');
+          setTimeout(() => window.location.href = 'index.html', 350);
+        } else {
+          alert(data.error || 'Login failed');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Login failed');
+      }
+    });
+    </script>
+</body>
+</html>

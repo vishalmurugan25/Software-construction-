@@ -1,0 +1,30 @@
+[
+  {
+    "username": "supraja",
+    "password": "$2a$10$Py8nVKQywPNFvG57oU32VOPsWkO1TUUMPUf9xblzB4v90kzKU27cS",
+    "displayName": "supraja14",
+    "friends": [
+      "surya"
+    ],
+    "avatar": "https://ui-avatars.com/api/?name=supraja14&background=random"
+  },
+  {
+    "username": "surya",
+    "password": "$2a$10$eW18iT04Y6ZMBxU1A8bohOsrzzFYBqkdmRNgRrVIViP7Aiv1EiNzy",
+    "displayName": "sparky",
+    "friends": [
+      "supraja",
+      "AD"
+    ],
+    "avatar": "https://ui-avatars.com/api/?name=sparky&background=random"
+  },
+  {
+    "username": "AD",
+    "password": "$2a$10$gNR4ZvUOeysctWfr6QyqCu.tGnLgh/3W36.Q0MBXfCsbgdbtSxNiK",
+    "displayName": "Tarun ",
+    "friends": [
+      "surya"
+    ],
+    "avatar": "https://ui-avatars.com/api/?name=Tarun%20&background=random"
+  }
+]
